@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 
+
 }
 :root {
     /* Accessible Color Palette */
@@ -15,14 +16,14 @@
     --space-sm: 0.5rem;
     --space-md: 1rem;
     --space-lg: 2rem;
-   
 }
 
 body {
-    /* width: 100vw; */
+    width: 100vw;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: 'Consolas', monospace;
+    font-size: 16px;
 
 }
 
@@ -36,8 +37,11 @@ header {
 }
 
 main, section, article {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
     margin: 2rem 0; /* Vertical spacing between sections */
-    padding: 1rem; /* Internal "breathing" space */
+padding: 0 2rem 0 2rem; /* Horizontal padding for better readability */
 }
 
 nav {
@@ -276,4 +280,49 @@ section {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+}
+
+/*******************
+ * Mobile design *
+ ******************/
+
+.off-screen-menu {
+    display: none; /* Hide the off-screen menu by default */
+}
+
+.menu-toggle:checked ~ .off-screen-menu {
+    display: flex; /* Show the off-screen menu when the checkbox is checked */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-secondary);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Ensure the menu is on top of other content */
+}
+
+.menu-toggle:checked + .ham-menu {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 11; /* Ensure the hamburger menu is above the off-screen menu */
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 768px) {
+    .ham-menu {
+        display: none; /* Hide the hamburger menu on larger screens */
+    }
+
+    .off-screen-menu {
+        display: flex; /* Show the full menu on large screens */
+        position: static;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: transparent;
+    }
 }
