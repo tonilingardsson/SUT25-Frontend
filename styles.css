@@ -179,7 +179,7 @@ color: yellow;
     font-weight: bolder;
 }
 
-.menu-toggle:checked ~ .off-screen-menu ul li a:active {
+ul li a.active {
     background-color: yellowgreen;
     color: var(--text-primary);
     font-weight: bolder;
