@@ -1,13 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antonio Luna's CV</title>
-    <link rel="stylesheet" href="styles.css" type="text/css">
-</head>
-<body>
-    <header><nav class="nav-wrapper">
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-wrapper">
         <input type="checkbox" id="menu-toggle" class="menu-toggle" />
         <label for="menu-toggle" class="ham-menu">
           <span></span>
@@ -23,51 +24,82 @@
             <li><a href="/" class="active">Contact</a></li>
           </ul>
         </div>
-      </nav></header>
+      </nav>
+    </header>
     <h1>Antonio Luna</h1>
     <p><strong>Email:</strong> antonio.luna@example.com</p>
     <p><strong>Phone:</strong> +1 234 567 8901</p>
     <h2>Education</h2>
     <ul>
-        <li><strong>Master of Science in Computer Science</strong>, University of Technology, 2020-2022</li>
-        <li><strong>Bachelor of Science in Computer Science</strong>, University of Technology, 2016-2020</li>
+      <li>
+        <strong>Master of Science in Computer Science</strong>, University of
+        Technology, 2020-2022
+      </li>
+      <li>
+        <strong>Bachelor of Science in Computer Science</strong>, University of
+        Technology, 2016-2020
+      </li>
     </ul>
     <h2>Experience</h2>
     <ul>
-        <li><strong>Software Engineer</strong>, Tech Solutions Inc., 2022-Present
-            <ul>
-                <li>Developed and maintained web applications using JavaScript, React, and Node.js.</li>
-                <li>Collaborated with cross-functional teams to design and implement new features.</li>
-                <li>Optimized application performance, resulting in a 20% increase in speed.</li>
-            </ul>
-        </li>
-        <li><strong>Intern Software Developer</strong>, Innovative Software Co., Summer 2021
-            <ul>
-                <li>Assisted in the development of a mobile application using Flutter.</li>
-                <li>Conducted testing and debugging to ensure application stability.</li>
-            </ul>
-        </li>
+      <li>
+        <strong>Software Engineer</strong>, Tech Solutions Inc., 2022-Present
+        <ul>
+          <li>
+            Developed and maintained web applications using JavaScript, React,
+            and Node.js.
+          </li>
+          <li>
+            Collaborated with cross-functional teams to design and implement new
+            features.
+          </li>
+          <li>
+            Optimized application performance, resulting in a 20% increase in
+            speed.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Intern Software Developer</strong>, Innovative Software Co.,
+        Summer 2021
+        <ul>
+          <li>
+            Assisted in the development of a mobile application using Flutter.
+          </li>
+          <li>
+            Conducted testing and debugging to ensure application stability.
+          </li>
+        </ul>
+      </li>
     </ul>
     <h2>Skills</h2>
     <ul>
-        <li>Programming Languages: JavaScript, Python, Java</li>
-        <li>Frameworks: React, Node.js, Flutter</li>
-        <li>Tools: Git, Docker, Jenkins</li>
+      <li>Programming Languages: JavaScript, Python, Java</li>
+      <li>Frameworks: React, Node.js, Flutter</li>
+      <li>Tools: Git, Docker, Jenkins</li>
     </ul>
     <section id="contact-form">
-        <form action="" method="post">
-            <h2>Contact Me</h2>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required><br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" required></textarea><br><br>
-            <input type="submit" value="Send">
-        </form>
+      <h2>Contact Me</h2>
+      <form action="#" method="post">
+        <div class="form-row">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-row">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-row">
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <div class="form-row form-row-submit">
+          <button type="submit" class="submit-btn">Send</button>
+        </div>
+      </form>
     </section>
     <footer>
-    <p>&copy; 2026 Antonio Luna. All rights reserved.</p>
+      <p>&copy; 2026 Antonio Luna. All rights reserved.</p>
     </footer>
-</body>
+  </body>
 </html>

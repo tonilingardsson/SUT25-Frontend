@@ -192,6 +192,48 @@ ul li a.active {
     z-index: 11; /* Ensure the hamburger menu stays above the off-screen menu */
 }
 
+#contact-form {
+    background-color: var(--bg-secondary);
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+#contact-form .form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+#contact-form label {
+    margin-bottom: 4px;
+}
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    padding: 4px 6px;
+    border: 1px solid var(--accent-aqua);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+#contact-form .form-row-submit {
+    align-items: flex-start;
+}
+
+#contact-form button {
+    padding: 6px 12px;
+    border-radius: 3px;
+    background-color: var(--accent-aqua);
+    font-size: large;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
 /* Responsive adjustments */
 @media (min-width: 768px) {
     .ham-menu {
@@ -252,4 +294,5 @@ ul li a.active {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+}
 }
