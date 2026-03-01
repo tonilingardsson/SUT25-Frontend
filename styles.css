@@ -49,7 +49,7 @@ footer {
 }
 
 /* Hamburger menu */
-.hamburger {
+.ham-menu {
     width: 3rem;
     height: 3rem;
     position: fixed;
@@ -175,6 +175,12 @@ color: yellow;
 
 .menu-toggle:checked ~ .off-screen-menu ul li a:hover {
     background-color: var(--accent-aqua);
+    color: var(--text-primary);
+    font-weight: bolder;
+}
+
+.menu-toggle:checked ~ .off-screen-menu ul li a:active {
+    background-color: yellowgreen;
     color: var(--text-primary);
     font-weight: bolder;
 }
