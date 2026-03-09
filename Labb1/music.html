@@ -1,14 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antonio Luna's CV</title>
-    <link rel="stylesheet" href="styles.css" type="text/css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antonio Luna – [Page name]</title>
+    <link rel="stylesheet" href="./styles.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
     <header>
-        <nav class="nav-wrapper">
+      <nav class="nav-wrapper wrapper">
         <input type="checkbox" id="menu-toggle" class="menu-toggle" />
         <label for="menu-toggle" class="ham-menu">
           <span></span>
@@ -17,15 +21,32 @@
         </label>
         <div class="off-screen-menu">
           <ul>
-            <li><a href="/index.html" >CV</a></li>
-            <li><a href="/portfolio.html">Portfolio</a></li>
-            <li><a href="/" class="current" aria-current="page">My music</a></li>
-            <li><a href="/about.html">About me</a></li>
-            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="index.html">CV</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="music.html" class="current">My music</a></li>
+            <li><a href="about.html">About me</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
       </nav>
     </header>
+      
+      <section class="hero">
+      <picture>
+        <!-- Desktop image (>= 768px) using the picture element -->
+        <source
+          srcset="images/developer_and_musician.jpg"
+          media="(min-width: 768px)"
+        />
+        <!-- Mobile image (< 768px) using the picture element -->
+        <img
+          src="images/developer_and_musician_mobile.jpg"
+          alt="Desktop with screend and music gear"
+          loading="lazy"
+        />
+      </picture>
+    </section>
+<main class="wrapper">
     <h1>Underfunk</h1>
     <p><strong>Underfunk</strong> is my music alias. I started using it in 2011 when I recorded som mixtapes and remixes. The name is a combination of "under" and "funk", reflecting my interest in underground and experimental music with an essence of funk sounds.</p>
     <p>Listen to it <a href="https://mixcloud.com/dj-underfunk" target ="_blank" rel="nofollow">here</a> at Mixcloud.com.</p>
@@ -69,8 +90,11 @@
         <li>Frameworks: React, Node.js, Flutter</li>
         <li>Tools: Git, Docker, Jenkins</li>
     </ul>
+    </main>
     <footer>
-    <p>&copy; 2026 Antonio Luna. All rights reserved.</p>
+      <div class="wrapper">
+        <p>&copy; 2026 Antonio Luna. All rights reserved.</p>
+      </div>
     </footer>
 </body>
 </html>
