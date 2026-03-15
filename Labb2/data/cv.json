@@ -1,0 +1,114 @@
+{
+  "experience": [
+    {
+      "title": "Blockchain Developer",
+      "company": "4+Ventures",
+      "location": "Stockholm, Sverige, Distans",
+      "years": "jan 2025 – apr 2025",
+      "details": [
+        "Arbetade med smarta kontrakt i Solidity, med React som Front-end.",
+        "Bidrog till tokenomics‑design och tekniska lösningar."
+      ]
+    }, 
+    {
+      "title": "Blockchain Developer",
+      "company": "Minima",
+      "location": "London, UK, Distans",
+      "years": "okt 2024 – jan 2025",
+      "details": [
+        "Byggde dApps på Minimas blockchain med React.",
+        "Utforskade och implementerade smarta kontrakt."
+      ]
+    },
+    {
+      "title": "Digital Marketing Konsult",
+      "company": "Egenföretagare",
+      "location": "Falkenberg, Sverige",
+      "years": "jun 2018 – aug 2023",
+      "details": [
+        "SEO hantering, sökord analys och prestandaoptimering.",
+        "Ansvar för betalda kampanjer (sök, social & display) och löpande resultatoptimering."
+      ]
+    },
+    {
+      "title": "Webmaster",
+      "company": "Vårdväskan AB",
+      "location": "Falkenberg, Sverige",
+      "years": "maj 2022 – maj 2023",
+      "details": [
+        "Förbättrade webbplatsen och digitala verktyg för bättre UX."
+      ]
+    },
+     {
+      "title": "Webmaster",
+      "company": "Ezy Webbverkstaden AB",
+      "location": "Varberg, Sverige",
+      "years": "okt 2017 – maj 2018",
+      "details": [
+        "Utvecklade webblösningar och stöttade projektledning."
+      ]
+    }     
+  ],
+  "education": [
+    {
+      "school": "Campus Varberg",
+      "degree": "System Utvecklare .NET (YH)",
+      "years": "2025-nu"
+    },{
+      "school": "Medieinstitutet Stockholm (Distans)",
+      "degree": "Blockchain Developer (YH)",
+      "years": "2023–2025"
+    },{
+      "school": "Medieinstitutet Göteborg",
+      "degree": "Webbutvecklare inom e‑handel (YH)",
+      "years": "2016–2018"
+    },{
+      "school": "Högskolan i Halmstad",
+      "degree": "Master in Innovation Management & Business Development",
+      "years": "2012–2013"
+    },{
+      "school": "Högskolan i Halmstad",
+      "degree": "Master in Strategic Management and Leadership",
+      "years": "2011–2012"
+    },{
+      "school": "Universitat de les Illes Balears (Spain)",
+      "degree": "Business Economics",
+      "years": "2006–2009"
+    }
+    
+  ],
+  "languages": [
+    {
+      "language": "Svenska",
+      "level": "flyttande"
+    },{
+      "language": "Engelska",
+      "level": "flyttande"
+    },{
+      "language": "Spanska",
+      "level": "modersmål"
+    },{
+      "language": "Katalanska",
+      "level": "modersmål"
+    },{
+      "language": "Italienska",
+      "level": "medel"
+    },{
+      "language": "Franska",
+      "level": "låg"
+    }
+  ],
+  "certificates": [
+    {
+      "title": "React"
+    },{
+      "title": "SEO Tool Kit"
+    },{
+      "title": "Keyword Strategy"
+    },{
+      "title": "E-commerce"
+    },{
+      "title": "Releasing & Promoting Your Music"
+    }
+  ]
+}
