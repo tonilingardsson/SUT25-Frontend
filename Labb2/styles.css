@@ -1,0 +1,448 @@
+/* === Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === Design tokens (färger, spacing, typografi) === */
+:root {
+  --bg-primary: #181a22;
+  --bg-secondary: #2b2d35;
+  --text-primary: #f0f0f0;
+  --text-muted: #b0b8c8;
+
+  --accent-aqua: #5ec8e5;
+  --accent-purple: #b388ff;
+  --accent-hover: #1f1f1f;
+  --link-default: #808af8;
+  --link-visited: #ab79ff;
+  --accent-error: #ff8a80;
+  --accent-success: #69f0ae;
+  --focus-ring: #ffeb3b;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+}
+
+/* Fullhöjd-body för bakgrund */
+html,
+body {
+  height: 100%;
+}
+
+/* Bas-typografi och bakgrund */
+body {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  font-family: "Consolas", monospace;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+p,
+ul {
+  margin-bottom: var(--space-sm);
+}
+
+/* === Länkar & fokus === */
+a {
+  color: var(--link-default);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+label:focus {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* === Baslayout === */
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space-md);
+}
+
+/* Flex-layout med två kolumner, staplas på små skärmar */
+.two-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  align-items: flex-start;
+}
+
+.two-columns > * {
+  flex: 1 1 280px;
+}
+
+/* Hero-bild överst på sidorna */
+.hero {
+  margin: 0 0 var(--space-lg);
+  padding: 0;
+}
+
+.hero picture,
+.hero img {
+  display: block;
+  width: 100%;
+  max-height: 17rem;
+  object-fit: cover;
+}
+
+/* Listor i cv-section utan bullets + horisontell layout för profiler */
+main ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.cv-section ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.cv-section a {
+  text-decoration: none;
+}
+
+.cv-section a:hover {
+  color: var(--accent-aqua);
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+/* === Navigation === */
+header {
+  background-color: var(--bg-secondary);
+  padding: var(--space-md) 0;
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hamburger-knapp (mobilt) */
+.ham-menu {
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 11;
+}
+
+.ham-menu span {
+  position: absolute;
+  width: 70%;
+  height: 3px;
+  background-color: var(--accent-aqua);
+  border-radius: 5px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.ham-menu span:nth-child(1) {
+  top: 25%;
+  transform: translateY(-50%);
+}
+
+.ham-menu span:nth-child(2) {
+  top: 50%;
+}
+
+.ham-menu span:nth-child(3) {
+  top: 75%;
+  transform: translateY(-50%);
+}
+
+/* Checkbox (styr meny) – dold visuellt */
+.menu-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Gör hamburgaren till "X" när menyn är öppen */
+.menu-toggle:checked + .ham-menu span:nth-child(1) {
+  top: 50%;
+  transform: rotate(45deg);
+}
+
+.menu-toggle:checked + .ham-menu span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle:checked + .ham-menu span:nth-child(3) {
+  top: 50%;
+  transform: rotate(-45deg);
+}
+
+/* Off-screen-meny (mobilt) – overlay hela skärmen */
+.off-screen-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-secondary);
+  z-index: 10;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* Visa meny när checkbox är ikryssad */
+.menu-toggle:checked ~ .off-screen-menu {
+  display: flex;
+}
+
+/* Mobil-listan i menyn */
+.menu-toggle:checked ~ .off-screen-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.off-screen-menu a {
+  text-decoration: none;
+}
+
+.off-screen-menu a:hover {
+  color: var(--accent-aqua);
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+/* Aktiv sida i menyn */
+.off-screen-menu a.current {
+  background-color: var(--link-default);
+  color: var(--accent-hover);
+  font-weight: bold;
+  border-color: var(--focus-ring);
+}
+
+/* === Porträttbild på CV-sidan === */
+.about-photo img {
+  display: block;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 2rem auto;
+}
+
+/* === Portfolio-kort === */
+.project-card img {
+  display: block;
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 0 auto var(--space-sm);
+}
+
+.project-card a {
+  text-decoration: none;
+}
+
+.project-card a:hover {
+  color: var(--accent-aqua);
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+/* Rubriker ibland centrerade */
+h2.center {
+  text-align: center;
+  text-shadow: 3px 3px #0a0a0a;
+}
+
+/* === Kontaktformulär === */
+#contact-form {
+  background-color: var(--bg-secondary);
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#contact-form .form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+#contact-form label {
+  margin-bottom: 4px;
+}
+
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid var(--accent-aqua);
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+#contact-form .form-row-submit {
+  align-items: flex-start;
+}
+
+/* === Modal (CSS-only, via :target) === */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* Visa modal när dess id är target i URL:en */
+.modal:target {
+  display: flex;
+}
+
+.modal__dialog {
+  position: relative; /* referens för X-knappen */
+  background: var(--bg-secondary);
+  padding: var(--space-lg);
+  max-width: 500px;
+  width: 90%;
+  border-radius: 8px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+/* Länkar i modalen/sektioner utan understrykning men med samma hover-beteende */
+section a,
+.modal a {
+  text-decoration: none;
+}
+
+section a:hover,
+.modal a:hover {
+  color: var(--accent-aqua);
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+/* === Knappar === */
+button {
+  background-color: var(--accent-aqua);
+  color: #0a0a0a;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: var(--accent-purple);
+  text-transform: uppercase;
+}
+
+/* === Footer === */
+footer {
+  background-color: var(--bg-secondary);
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+footer .wrapper {
+  padding: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* === Desktop (≥ 768px) === */
+@media (min-width: 768px) {
+  main {
+    margin: var(--space-lg) 0;
+  }
+
+  section {
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Dölj hamburger-menyn, visa horisontell meny */
+  .ham-menu {
+    display: none;
+  }
+
+  .off-screen-menu {
+    display: flex;
+    position: static;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+
+  .off-screen-menu ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .off-screen-menu li a {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--accent-aqua);
+    border-radius: 5px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  .off-screen-menu a.current {
+    background-color: var(--link-default);
+    border-color: var(--focus-ring);
+    font-weight: bold;
+  }
+
+  .off-screen-menu li a:hover {
+    background-color: var(--accent-aqua);
+    color: var(--accent-hover);
+    font-weight: bolder;
+  }
+}

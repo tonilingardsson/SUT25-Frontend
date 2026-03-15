@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antonio Luna – Portfolio</title>
+    <link rel="stylesheet" href="./styles.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-wrapper wrapper">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+        <label for="menu-toggle" class="ham-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <div class="off-screen-menu">
+           <ul>
+            <li><a href="index.html">CV</a></li>
+            <li><a href="portfolio.html" class="current">Portfolio</a></li>
+            <li><a href="music.html" >Min musik</a></li>
+            <li><a href="about.html">Om mig</a></li>
+            <li><a href="contact.html" >Kontakt</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header><section class="hero">
+      <picture>
+        <!-- Desktop image (>= 768px) using the picture element -->
+        <source
+          srcset="images/developer_and_musician.jpg"
+          media="(min-width: 768px)"
+        />
+        <!-- Mobile image (< 768px) using the picture element -->
+        <img
+          src="images/developer_and_musician_mobile.jpg"
+          alt="Desktop with screend and music gear"
+          loading="lazy"
+        />
+      </picture>
+    </section>
+ <main class="wrapper">
+  <h1>Min Portfolio</h1>
+
+  <section id="portfolio" class="portfolio-list two-columns">
+    <!-- Project 1: Digital Ways -->
+    <article class="project-card">
+      <h2 class="center">Digital Ways</h2>
+      <img src="images/digitalways.jpg"
+           alt="Screenshot of the Digital Ways website"
+           loading="lazy">
+<p>Min WordPress‑webbplats som jag skapade för att starta mitt eget bolag.</p>
+      <a href="#project-digitalways"
+         class="btn">
+        Läs vidare
+      </a>
+    </article>
+
+    <!-- Project 2: Vårdväskan -->
+    <article class="project-card">
+      <h2 class="center">Vårdväskan</h2>
+      <img src="images/wordpress.png"
+           alt="Screenshot of a webshop interface"
+           loading="lazy">
+      <p>Skandinaviens största e‑handel inom vården (PrestaShop CMS). Jag arbetade som webmaster.</p>
+      <a href="#project-vardvaskan"
+         class="btn">
+        Läs vidare
+      </a>
+    </article>
+  </section>
+
+  <!-- Simple list of profiles/links -->
+  <section class="cv-section">
+    <h2>Profiler</h2>
+    <ul class="portfolio-links">
+      <li><a href="https://github.com/tonilingardsson" target="_blank"><i class="fa fa-github"></i> GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/antonio-luna/" target="_blank"><i class="fa fa-linkedin-square"></i> LinkedIn</a></li>
+      <li><a href="https://www.instagram.com/underfunk/" target="_blank"><i class="fa fa-instagram"></i> Instagram</a></li>
+      <li><a href="https://x.com/underfunk" target="_blank"><i class="fa fa-twitter"></i> X</a></li>
+    </ul>
+  </section>
+</main>
+<!-- Modals Read More -->
+<div id="project-digitalways" class="modal">
+  <div class="modal__dialog">
+    <a href="#portfolio" class="modal__close" aria-label="Stäng">×</a>
+    <h2 class="center">Digital Ways</h2>
+    <p>Jag lärde mig att skapa egna plugins och teman i PHP. Jag är inte expert än ...</p>
+    <p><a href="https://digitalways.se" target="_blank" rel="noopener">Besök sidan</a></p>
+  </div>
+</div><div id="project-vardvaskan" class="modal">
+  <div class="modal__dialog">
+    <a href="#portfolio" class="modal__close" aria-label="Stäng">×</a>
+    <h2 class="center">Vårdväskan</h2>
+<p>Där lärde jag mig vad riktig spagettikod är och hur man prioriterar vilka problem som ska lösas. Det går inte att fixa allt.</p>
+    <p><a href="https://vardvaskan.se" target="_blank" rel="noopener">Besök INTE sidan xD</a></p>
+  </div>
+</div>
+
+<footer>
+ <div class="wrapper">
+        <p>&copy; 2026 Antonio Luna. Alla rättigheter förbehållna.</p>
+      </div></footer>
+
+
+</body>
+</html>
