@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Antonio Luna – [Page name]</title>
+    <title>Antonio Luna – Portfolio</title>
     <link rel="stylesheet" href="./styles.css" type="text/css" />
     <link
       rel="stylesheet"
@@ -20,12 +20,12 @@
           <span></span>
         </label>
         <div class="off-screen-menu">
-          <ul>
+           <ul>
             <li><a href="index.html">CV</a></li>
-            <li><a href="portfolio.html"  class="current">Portfolio</a></li>
-            <li><a href="music.html">My music</a></li>
-            <li><a href="about.html">About me</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="portfolio.html" class="current">Portfolio</a></li>
+            <li><a href="music.html" >Min musik</a></li>
+            <li><a href="about.html">Om mig</a></li>
+            <li><a href="contact.html" >Kontakt</a></li>
           </ul>
         </div>
       </nav>
@@ -44,60 +44,70 @@
         />
       </picture>
     </section>
-    <main class="wrapper">
+ <main class="wrapper">
+  <h1>Min Portfolio</h1>
 
-    <h1>My Portfolio</h1>
+  <section id="portfolio" class="portfolio-list two-columns">
+    <!-- Project 1: Digital Ways -->
+    <article class="project-card">
+      <h2 class="center">Digital Ways</h2>
+      <img src="images/digitalways.jpg"
+           alt="Screenshot of the Digital Ways website"
+           loading="lazy">
+<p>Min WordPress‑webbplats som jag skapade för att starta mitt eget bolag.</p>
+      <a href="#project-digitalways"
+         class="btn">
+        Läs vidare
+      </a>
+    </article>
+
+    <!-- Project 2: Vårdväskan -->
+    <article class="project-card">
+      <h2 class="center">Vårdväskan</h2>
+      <img src="images/wordpress.png"
+           alt="Screenshot of a webshop interface"
+           loading="lazy">
+      <p>Skandinaviens största e‑handel inom vården (PrestaShop CMS). Jag arbetade som webmaster.</p>
+      <a href="#project-vardvaskan"
+         class="btn">
+        Läs vidare
+      </a>
+    </article>
+  </section>
+
+  <!-- Simple list of profiles/links -->
+  <section class="cv-section">
+    <h2>Profiler</h2>
     <ul class="portfolio-links">
-        <li><a href="https://digitalways.se" target="_blank" rel="follow"><i class="fa fa-wordpress"></i>
- Digital Ways</a></li>
-        <li><a href="https://github.com/tonilingardsson" target="_blank"><i class="fa fa-github"></i>
- GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/antonio-luna/" target="_blank"><i class="fa fa-linkedin-square" ></i>
-LinkedIn</a></li>
-        <li><a href="https://www.instagram.com/underfunk/" target="_blank"><i class="fa fa-instagram"></i>
-Instagram</a></li>
-        <li><a href="https://vardvaskan.se" target="_blank"><i class="fa fa-shopping-bag"></i>
-Vårdväskan</a></li>
-    </ul><h2>Education</h2>
-    <ul>
-        <li><strong>Master of Science in Computer Science</strong>, University of Technology, 2020-2022</li>
-        <li><strong>Bachelor of Science in Computer Science</strong>, University of Technology, 2016-2020</li>
+      <li><a href="https://github.com/tonilingardsson" target="_blank"><i class="fa fa-github"></i> GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/antonio-luna/" target="_blank"><i class="fa fa-linkedin-square"></i> LinkedIn</a></li>
+      <li><a href="https://www.instagram.com/underfunk/" target="_blank"><i class="fa fa-instagram"></i> Instagram</a></li>
+      <li><a href="https://x.com/underfunk" target="_blank"><i class="fa fa-twitter"></i> X</a></li>
     </ul>
-    <h2>Experience</h2>
-    <ul>
-        <li><strong>Software Engineer</strong>, Tech Solutions Inc., 2022-Present
-            <ul>
-                <li>Developed and maintained web applications using JavaScript, React, and Node.js.</li>
-                <li>Collaborated with cross-functional teams to design and implement new features.</li>
-                <li>Optimized application performance, resulting in a 20% increase in speed.</li>
-            </ul>
-        </li>
-        <li><strong>Intern Software Developer</strong>, Innovative Software Co., Summer 2021
-            <ul>
-                <li>Assisted in the development of a mobile application using Flutter.</li>
-                <li>Conducted testing and debugging to ensure application stability.</li>
-            </ul>
-        </li>
-    </ul>
-    <h2>Skills</h2>
-    <ul>
-        <li>Programming Languages: JavaScript, Python, Java</li>
-        <li>Frameworks: React, Node.js, Flutter</li>
-        <li>Tools: Git, Docker, Jenkins</li>
-    </ul>
-    </main>
-    <footer>
-        <section><ul class="footer-links">
-        <li><a href="https://github.com/tonilingardsson" target="_blank"><i class="fa fa-github"></i>
- GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/antonio-luna/" target="_blank"><i class="fa fa-linkedin-square" ></i>
-LinkedIn</a></li>
-        <li><a href="https://www.instagram.com/underfunk/" target="_blank"><i class="fa fa-instagram"></i>
-Instagram</a></li>
-        <li><a href="https://x.com/underfunk" target="_blank"><i class="fa fa-twitter"></i>
-X</a></li>
-    </ul></section>
-    <p>&copy; 2026 Antonio Luna. All rights reserved.</p>
-    </footer>
+  </section>
+</main>
+<!-- Modals Read More -->
+<div id="project-digitalways" class="modal">
+  <div class="modal__dialog">
+    <a href="#portfolio" class="modal__close" aria-label="Stäng">×</a>
+    <h2 class="center">Digital Ways</h2>
+    <p>Jag lärde mig att skapa egna plugins och teman i PHP. Jag är inte expert än ...</p>
+    <p><a href="https://digitalways.se" target="_blank" rel="noopener">Besök sidan</a></p>
+  </div>
+</div><div id="project-vardvaskan" class="modal">
+  <div class="modal__dialog">
+    <a href="#portfolio" class="modal__close" aria-label="Stäng">×</a>
+    <h2 class="center">Vårdväskan</h2>
+<p>Där lärde jag mig vad riktig spagettikod är och hur man prioriterar vilka problem som ska lösas. Det går inte att fixa allt.</p>
+    <p><a href="https://vardvaskan.se" target="_blank" rel="noopener">Besök INTE sidan xD</a></p>
+  </div>
+</div>
+
+<footer>
+ <div class="wrapper">
+        <p>&copy; 2026 Antonio Luna. Alla rättigheter förbehållna.</p>
+      </div></footer>
+
+
 </body>
 </html>
