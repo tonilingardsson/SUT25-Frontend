@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antonio Luna – CV</title>
-    <link rel="stylesheet" href="./styles.css" type="text/css" />
+    <link rel="stylesheet" href="./styling/styles.css" type="text/css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="./logic/logic.js" defer></script>
   </head>
   <body>
     <header>
@@ -26,6 +27,8 @@
             <li><a href="music.html">Min musik</a></li>
             <li><a href="about.html">Om mig</a></li>
             <li><a href="contact.html">Kontakt</a></li>
+                                    <li><a href="wcag.html">WCAG</a></li>
+
           </ul>
         </div>
     </nav>
@@ -35,12 +38,12 @@
       <picture>
         <!-- Desktop image (>= 768px) using the picture element -->
         <source
-          srcset="images/developer_and_musician.jpg"
+          srcset="./styling/images/developer_and_musician.jpg"
           media="(min-width: 768px)"
         />
         <!-- Mobile image (< 768px) using the picture element -->
         <img
-          src="images/developer_and_musician_mobile.jpg"
+          src="./styling/images/developer_and_musician_mobile.jpg"
           alt="Desktop with screend and music gear"
           loading="lazy"
         />
@@ -72,7 +75,7 @@
       </div>
  
       <figure class="about-photo">
-      <img src="./images/portrait.png" alt="Porträtt av Antonio Lingårdsson Luna">
+      <img src="./styling/images/portrait.png" alt="Porträtt av Antonio Lingårdsson Luna">
     </figure>
 
   </section>
@@ -99,93 +102,24 @@
   <section class="two-columns" aria-labelledby="experience-heading">
     <div>
       <h2 id="experience-heading">Erfarenhet</h2>
-      <ul>
-        <li>
-          <strong>Blockchain Developer</strong>, 4+Ventures
-          <span> (jan 2025 – apr 2025, Sverige)</span>
-          <ul>
-            <li>Arbetade med smarta kontrakt i Solidity och Move.</li>
-            <li>Bidrog till tokenomics‑design och tekniska lösningar.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Blockchain Developer</strong>, Minima
-          <span> (sep 2024 – feb 2025, London)</span>
-          <ul>
-            <li>Byggde dApps på Minimas blockchain med React.</li>
-            <li>Utforskade och implementerade smarta kontrakt.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Digital Marketing Consultant</strong>, Egenföretagare
-          <span> (apr 2018 – aug 2023, Falkenberg)</span>
-          <ul>
-            <li>SEO‑hantering, sökordsanalys och prestandaoptimering.</li>
-            <li>
-              Ansvar för betalda kampanjer (sök, social & display) och
-              löpande resultatoptimering.
-            </li>
-          </ul>
-        </li>
-        <li>
-          <strong>Webbutvecklare</strong>, Vårdväskan AB
-          <span> (maj 2022 – maj 2023, Falkenberg)</span>
-          <ul>
-            <li>Förbättrade webbplatsen och digitala verktyg för bättre UX.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Junior webbutvecklare</strong>, ezy
-          <span> (aug 2017 – maj 2018, Varberg)</span>
-          <ul>
-            <li>Utvecklade webblösningar och stöttade projektledning.</li>
-          </ul>
-        </li>
+      <ul id="experience-list">
       </ul>
     </div>
 
     <!-- Utbildning -->
     <div>
       <h2>Utbildning</h2>
-      <ul>
-        <li>
-          <strong>Blockchain Developer</strong>,
-          Bachelor of Technology (Information Technology)
-          <span> (2023 – 2025)</span>
-        </li>
-        <li>
-          <strong>Webbutvecklare inom e‑handel</strong>,
-          Medieinstitutet
-          <span> (2016 – 2018)</span>
-        </li>
-        <li>
-          <strong>Masterexamen</strong>, Innovation Management & Business Development,
-          Högskolan i Halmstad
-          <span> (2012 – 2013)</span>
-        </li>
-        <li>
-          <strong>Masterexamen</strong>, Strategic Management and Leadership,
-          Högskolan i Halmstad
-          <span> (2011 – 2012)</span>
-        </li>
+      <ul id="education-list">
       </ul>
 
       <h2>Språk</h2>
-      <ul>
-        <li>Svenska</li>
-        <li>Engelska</li>
-        <li>Spanska</li>
-        <li>Katalanska</li>
-        <li>Italienska</li>
+      <ul id="languages-list">
+
       </ul>
 
       <h2>Certifieringar</h2>
-      <ul>
-        <li>Learn React Course</li>
-        <li>SEO Tracking Tool Kit</li>
-        <li>SEO: Keyword Strategy</li>
-        <li>E‑commerce and SEO</li>
-        <li>Releasing and Promoting Your Music</li>
+      <ul id="certificates-list">
+
       </ul>
     </div>
   </section>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WCAG 2.1 och webbtillgänglighet – Antonio Luna</title>
+    <meta
+      name="description"
+      content="Tillgänglighetsredogörelse för Antonio Lunas portfolio. Här beskriver jag hur webbplatsen följer WCAG 2.1 nivå AA med fokus på struktur, färgkontrast, tangentbordsnavigering och alternativa texter."
+    />
+    <link rel="stylesheet" href="./styling/styles.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-wrapper wrapper">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+        <label for="menu-toggle" class="ham-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <div class="off-screen-menu">
+          <ul>
+            <li><a href="index.html">CV</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="music.html">Min musik</a></li>
+            <li><a href="about.html">Om mig</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+            <li><a href="wcag.html" class="current">WCAG</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <picture>
+        <source
+          srcset="./styling/images/developer_and_musician.jpg"
+          media="(min-width: 768px)"
+        />
+        <img
+          src="./styling/images/developer_and_musician_mobile.jpg"
+          alt="Desktop med skärmar och musikutrustning"
+          loading="lazy"
+        />
+      </picture>
+    </section>
+
+    <main class="wrapper">
+      <h1>WCAG 2.1 och digital tillgänglighet</h1>
+
+      <section aria-labelledby="wcag-intro-heading">
+        <h2 id="wcag-intro-heading">Syftet med den här sidan</h2>
+        <p>
+          Den här sidan beskriver hur min personliga webbplats är byggd med
+          utgångspunkt i <strong>WCAG 2.1</strong> nivå AA, riktlinjerna för
+          tillgängligt webbinnehåll. Jag vill att innehållet ska vara läsbart,
+          användbart och nåbart för så många användare som möjligt, oavsett
+          enhet och funktionsförmåga.
+        </p>
+        <p>
+          Fokus ligger på struktur, semantik, färgkontraster, tangentbordsnavigering
+          och tydliga texter. Sidan fungerar också som dokumentation för
+          tillgänglighetskraven i min utbildning.
+        </p>
+      </section>
+
+      <section aria-labelledby="principer-heading" class="two-columns">
+        <div>
+          <h2 id="principer-heading">WCAG‑principer jag följer</h2>
+          <p>
+            WCAG bygger på fyra grundprinciper: innehåll ska vara
+            <strong>möjligt att uppfatta, hanterbart, begripligt och robust</strong>
+            (POUR). Nedan beskriver jag hur min webbplats knyter an till dessa
+            principer på en praktisk nivå.
+          </p>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <strong>Möjligt att uppfatta</strong> – tydliga rubriker, bra
+              kontrast mellan text och bakgrund, samt alt‑texter på relevanta
+              bilder.
+            </li>
+            <li>
+              <strong>Hanterbart</strong> – navigation och menyer kan användas
+              med tangentbord, och interaktiva element har tydliga fokusmarkeringar.
+            </li>
+            <li>
+              <strong>Begripligt</strong> – konsekvent struktur, begripligt språk
+              på svenska och tydliga länknamn som beskriver vart länken leder.
+            </li>
+            <li>
+              <strong>Robust</strong> – sidan använder semantisk HTML och
+              standardiserade element som fungerar i moderna webbläsare och
+              hjälpmedel.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="aa-heading">
+        <h2 id="aa-heading">Exempel på WCAG 2.1‑anpassningar (AA‑nivå)</h2>
+        <ul>
+          <li>
+            <strong>Semantisk struktur</strong> – varje sida har en tydlig
+            hierarki med en H1‑rubrik, logiska H2/H3‑rubriker och korrekt
+            användning av <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>,
+            <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> och
+            <code>&lt;footer&gt;</code>.
+          </li>
+          <li>
+            <strong>Textalternativ</strong> – dekorativa bilder används sparsamt,
+            och betydelsebärande bilder har beskrivande <code>alt</code>‑texter,
+            till exempel porträttbilden på startsidan.
+          </li>
+          <li>
+            <strong>Tangentbordsnavigering</strong> – meny, länkar, knappar och
+            formulär kan nås och användas med tangentbord. Fokusmarkeringen
+            förstärks med tydlig outline‑färg.
+          </li>
+          <li>
+            <strong>Responsiv design</strong> – layouten anpassar sig till mobil,
+            surfplatta och desktop med flexbox och media queries utan att innehåll
+            försvinner eller kräver horisontell scroll.
+          </li>
+          <li>
+            <strong>Konsekventa komponenter</strong> – navigation, kort för
+            portfolio‑projekt och kontaktformulär har samma utseende och
+            beteende på alla sidor.
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="begransningar-heading" class="two-columns">
+        <div>
+          <h2 id="begransningar-heading">Kända begränsningar</h2>
+          <p>
+            Trots ansträngningar att följa WCAG 2.1 finns det delar som kan
+            förbättras. Vissa experimentella funktioner, som påskäggen och det
+            inbäddade Snake‑spelet, är i första hand utvecklingsövningar och
+            har inte fullt fokus på tillgänglighet.
+          </p>
+        </div>
+        <div>
+          <ul>
+            <li>
+              En del modaler saknar ännu full tangentbordsstyrning (t.ex.
+              fokusfälla och stängning med Escape).
+            </li>
+            <li>
+              Snake‑spelet kräver tangentbord och är inte anpassat för
+              skärmläsare eller pekskärm.
+            </li>
+            <li>
+              Viss engelsk terminologi förekommer i texter och länkar, vilket
+              kan försvåra förståelsen för vissa användare.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="kontakt-heading">
+        <h2 id="kontakt-heading">Feedback på tillgänglighet</h2>
+        <p>
+          Om du upptäcker problem med tillgänglighet, fel i innehållet eller har
+          förslag på förbättringar är du välkommen att kontakta mig via
+          <a href="contact.html">kontaktsidan</a>. Tillgänglighet är ett
+          pågående arbete, och jag planerar att fortsätta förbättra sidan i
+          kommande projekt och kurser.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrapper">
+        <p>&copy; 2026 Antonio Luna. Alla rättigheter förbehållna.</p>
+      </div>
+    </footer>
+  </body>
+</html>
