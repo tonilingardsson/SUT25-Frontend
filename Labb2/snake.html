@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Snake Light</title>
+    <style>
+      body {
+        margin: 0;
+        background: #000;
+        color: #fff;
+        font-family: system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      canvas {
+        border: 2px solid #fff;
+        background: #111;
+      }
+
+      #snake-info {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="snake-canvas" width="300" height="300"></canvas>
+    <div id="snake-info">Styr med piltangenterna. Ät de gröna rutorna!</div>
+
+    <script>
+      const canvas = document.getElementById("snake-canvas");
+      const ctx = canvas.getContext("2d");
+
+      const gridSize = 15; // storlek på ruta i pixlar
+      const tileCount = canvas.width / gridSize;
+
+      let snake = [{ x: 5, y: 5 }];
+      let dx = 1;
+      let dy = 0;
+      let food = randomFood();
+      let gameOver = false;
+
+      function randomFood() {
+        return {
+          x: Math.floor(Math.random() * tileCount),
+          y: Math.floor(Math.random() * tileCount),
+        };
+      }
+
+      function draw() {
+        if (gameOver) return;
+
+        // flytta orm
+        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+
+        // kolla vägg-krock
+        if (
+          head.x < 0 ||
+          head.x >= tileCount ||
+          head.y < 0 ||
+          head.y >= tileCount
+        ) {
+          gameOver = true;
+          return;
+        }
+
+        // kolla själv-krock
+        if (snake.some((seg) => seg.x === head.x && seg.y === head.y)) {
+          gameOver = true;
+          return;
+        }
+
+        snake.unshift(head);
+
+        // åt mat?
+        if (head.x === food.x && head.y === food.y) {
+          food = randomFood();
+        } else {
+          snake.pop();
+        }
+
+        // rita bakgrund
+        ctx.fillStyle = "#111";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // rita mat
+        ctx.fillStyle = "#4caf50";
+        ctx.fillRect(
+          food.x * gridSize,
+          food.y * gridSize,
+          gridSize - 1,
+          gridSize - 1
+        );
+
+        // rita orm
+        ctx.fillStyle = "#ffeb3b";
+        snake.forEach((seg, index) => {
+          ctx.fillRect(
+            seg.x * gridSize,
+            seg.y * gridSize,
+            gridSize - 1,
+            gridSize - 1
+          );
+        });
+
+        requestAnimationFrame(() => setTimeout(draw, 120));
+      }
+
+      // styrning
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowUp" && dy === 0) {
+          dx = 0;
+          dy = -1;
+        } else if (e.key === "ArrowDown" && dy === 0) {
+          dx = 0;
+          dy = 1;
+        } else if (e.key === "ArrowLeft" && dx === 0) {
+          dx = -1;
+          dy = 0;
+        } else if (e.key === "ArrowRight" && dx === 0) {
+          dx = 1;
+          dy = 0;
+        }
+      });
+
+      draw();
+    </script>
+  </body>
+</html>
