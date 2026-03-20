@@ -77,7 +77,7 @@
     }
     
   ],
-  "languages": [
+  "language": [
     {
       "language": "Svenska",
       "level": "flyttande"
@@ -98,7 +98,7 @@
       "level": "låg"
     }
   ],
-  "certificates": [
+  "certificate": [
     {
       "title": "React"
     },{
