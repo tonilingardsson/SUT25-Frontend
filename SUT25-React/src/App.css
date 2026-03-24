@@ -182,3 +182,9 @@
     border-right-color: var(--border);
   }
 }
+
+/* t.ex. i App.css */
+.todo-item.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
