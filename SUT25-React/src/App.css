@@ -184,7 +184,19 @@
 }
 
 /* t.ex. i App.css */
+.todo-item {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .todo-item.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todo-item.done span {
   text-decoration: line-through;
   opacity: 0.6;
 }
