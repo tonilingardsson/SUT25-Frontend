@@ -1,15 +1,35 @@
 // import React from "react";
 
-function TodoItem({ text, done }) {
+function TodoItem({ id, text, done, onToggle, onDelete }) {
     const className = done ? 'todo-item done' : 'todo-item';
-    return <li className={className}>{text}</li>;
+
+    function handleToggle(){
+        if (onToggle) {
+            onToggle(id);
+        }
+    }
+
+    function handleDelete() {
+        if (onDelete) {
+            onDelete(id);
+        }
+    }
+
+    return (
+        <li className={className}>
+            {/* Checkbox to mark done/not-done */}
+            <input 
+            type="checkbox"
+            checked={done}
+            onChange={handleToggle}
+            />
+
+            {text}
+            <button type="button" onClick={handleDelete}>
+                Ta bort
+            </button>
+        </li>
+    );
 }
-
-
-/* 
-  Just nu är TodoItem "dum" – den bara visar data.
-  I nästa steg kommer vi lägga till checkbox / knapp och callback-funktioner
-  för att toggla "done" och ta bort todos.
-*/
 
 export default TodoItem;
