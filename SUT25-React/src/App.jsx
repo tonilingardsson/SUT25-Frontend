@@ -61,6 +61,15 @@ function App() {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   }
 
+  function moveTodo(fromIndex, toIndex) {
+    setTodos((prevTodos) => {
+      const updated = [...prevTodos]; // make a copy of the existing todos
+      const [moved] = updated.splice(fromIndex,1); // take away element
+      updated.splice(toIndex, 0, moved); // push in the new position
+      return updated
+    })
+  }
+
   // Filter after category
   const filteredTodos = todos.filter((todo) => {
     if(!selectedCategory) return true; // no filter? Show all
@@ -125,7 +134,7 @@ function App() {
       <TodoInput onAddTodo={addTodo} />
       
       <ul>
-        {sortedTodos.map((todo) => (
+        {sortedTodos.map((todo, index) => (
           <TodoItem
           key={todo.id}
           id={todo.id}
@@ -133,8 +142,13 @@ function App() {
           done={todo.done}
           category={todo.category}
           deadline={todo.deadline}
+          index={index}
           onToggle={toggleTodo}
           onDelete={deleteTodo}
+          onMove={(from,to) => {
+            // Only allowed when there is no selected sort/filter
+            if(!selectedCategory && sortBy === 'none') moveTodo (from,to);
+          }}
           />
         ))}
       </ul>
