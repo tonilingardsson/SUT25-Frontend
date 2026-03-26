@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';           // 1) Importera useState 
 import './App.css'
 import TodoInput from './components/TodoInput'
 import TodoItem from './components/TodoItem'
+import { DragDropContext, Droppable, Draggable} from '@hello-pangea/dnd';
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -70,6 +71,29 @@ function App() {
     })
   }
 
+  // Handle Drags with React library
+  function handleDragEnd(result) {
+    const { source, destination } = result;
+
+    // If no destination (put it outside the list) -> Do nothing
+    if(!destination) return;
+
+    // If the position is not change, do nothing
+    if(source.index === destination.index && source.droppableId === destination.droppableId) {
+      return;
+    }
+
+    // If
+    if(selectedCategory || sortBy !== 'none') return;
+
+    setTodos((prevTodos) => {
+      const updated = [...prevTodos];
+      const [moved] = updated.splice(source.index, 1);
+      updated.splice(destination.index, 0, moved);
+      return updated;
+    });
+  }
+
   // Filter after category
   const filteredTodos = todos.filter((todo) => {
     if(!selectedCategory) return true; // no filter? Show all
@@ -133,7 +157,7 @@ function App() {
 
       <TodoInput onAddTodo={addTodo} />
       
-      <ul>
+      {/* <ul>
         {sortedTodos.map((todo, index) => (
           <TodoItem
           key={todo.id}
@@ -151,7 +175,55 @@ function App() {
           }}
           />
         ))}
-      </ul>
+      </ul> */}
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <Droppable droppableId='todo-list'>
+          {(provided) => (
+            <ul
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            >
+              {sortedTodos.map((todo, index) =>(
+                <Draggable
+                key={todo.id}
+                draggableId={String(todo.id)}
+                  index={index}
+                >
+                  {(draggableProvided, snapshot) => (
+                    <li
+                    ref={draggableProvided.innerRef}
+                    {...draggableProvided.draggableProps}
+                    {...draggableProvided.dragHandleProps}
+                    className={
+                      'todo-item' + 
+                      (todo.done ? 'done' : '') +
+                      (snapshot.isDragging ? 'dragging' : '')
+                    }
+                    >
+                       <TodoItem
+          key={todo.id}
+          id={todo.id}
+          text={todo.text}
+          done={todo.done}
+          category={todo.category}
+          deadline={todo.deadline}
+          index={index}
+          onToggle={toggleTodo}
+          onDelete={deleteTodo}
+          onMove={(from,to) => {
+            // Only allowed when there is no selected sort/filter
+            if(!selectedCategory && sortBy === 'none') moveTodo (from,to);
+          }}
+          />
+                    </li>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
     </>
   );
 }
