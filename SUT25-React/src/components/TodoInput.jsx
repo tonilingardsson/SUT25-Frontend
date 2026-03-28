@@ -26,7 +26,7 @@ function TodoInput({ onAddTodo }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="todo-form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Skriv en todo..."
