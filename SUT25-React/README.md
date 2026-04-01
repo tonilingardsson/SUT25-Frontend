@@ -1,16 +1,32 @@
-# React + Vite
+# Todo-lista – React/Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Detta är min todo-app för den 3:e uppgiften i Webbutveckling Frontend.
 
-Currently, two official plugins are available:
+## Funktioner
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Lägga till todos via formulär (text, kategori, deadline)
+- Markera todos som klara/ej klara
+- Ta bort todos
+- Filtrera på kategori (arbete, privat, studier)
+- Sortera på deadline eller status (klar/ej klar)
+- Räknare som visar `X kvar, Y klara`
+- Todos sparas i `localStorage` och laddas vid start
+- Drag-and-drop för att ändra ordning på todos när ingen sortering/filter är aktiv
 
-## React Compiler
+## Teknik
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React med Vite (JavaScript)
+- `useState` för todo-listan, filter och sortering
+- `useEffect` för att synka state med `localStorage`
+- Komponenter: `App`, `TodoInput`, `TodoItem`
+- Drag-and-drop med `@hello-pangea/dnd`
+- Egen CSS för dark theme, flex-layout och responsiv design
 
-## Expanding the ESLint configuration
+## Hur man kör
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+Öppna sedan http://localhost:5173 i webbläsaren.
