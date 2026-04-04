@@ -75,9 +75,9 @@ label:focus {
 
 /* === Baslayout === */
 .wrapper {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: var(--space-md);
+  padding-inline: 1em;
 }
 
 /* Flex-layout med två kolumner, staplas på små skärmar */
@@ -146,6 +146,7 @@ header {
   width: 3rem;
   height: 3rem;
   position: fixed;
+  margin-bottom: 4rem;
   top: 1rem;
   right: 1rem;
   display: flex;
@@ -204,6 +205,7 @@ header {
 .off-screen-menu {
   display: none;
   position: fixed;
+
   inset: 0;
   background-color: var(--bg-secondary);
   z-index: 10;
@@ -211,7 +213,7 @@ header {
   justify-content: center;
   align-items: center;
   padding: 0;
-  margin: 0;
+  margin: 1em;
 }
 
 /* Visa meny när checkbox är ikryssad */
