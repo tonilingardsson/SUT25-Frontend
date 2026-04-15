@@ -5,12 +5,8 @@ import TodoItem from "./components/TodoItem";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 function App() {
-  const [todos, setTodos] = useState(() => {
-    const stored = localStorage.getItem("todos");
-
-    if (!stored) {
-      // Default return: if there is nothing spared, return this list
-      return [
+  const [todos, setTodos] = useState(
+      JSON.parse(localStorage.getItem("todos")) ||  [
         {
           id: 1,
           text: "Lära mig React",
@@ -32,15 +28,8 @@ function App() {
           category: "studier",
           deadline: "2026-03-30",
         },
-      ];
-    }
-
-    try {
-      return JSON.parse(stored);
-    } catch {
-      return [];
-    }
-  });
+      ]
+  );
 
   // Which category to be shown
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -177,6 +166,7 @@ function App() {
         <TodoInput onAddTodo={addTodo} />
 
         <DragDropContext onDragEnd={handleDragEnd}>
+          {/* Move this to <TodoList className="jsx"></TodoList> */}
           <Droppable droppableId="todo-list">
             {(provided) => (
               <ul ref={provided.innerRef} {...provided.droppableProps}>
