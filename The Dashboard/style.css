@@ -53,8 +53,15 @@ body.dark-mode .sidebar {
 
 /* Content area */
 .content {
+    display: flex;
     flex: 1;
     padding: 1rem;
+    background-color: #ffffff;
+    transition: background-color 0.3s;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
     background-color: #ffffff;
     transition: background-color 0.3s;
 }
