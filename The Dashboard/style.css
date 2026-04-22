@@ -9,12 +9,20 @@ body {
 body.light-mode {
     background-color: #ffffff;
     color: #000000;
+    button {
+        background-color: #007bff;
+        color: #ffffff;
+    }
 }
 
 /* Dark mode */
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;
+        button {
+            background-color: #333333;
+            color: #ffffff;
+        }
 }
 
 /* Dashboard container */
@@ -30,6 +38,24 @@ body.dark-mode {
     background-color: #007bff;
     color: #ffffff;
     text-align: center;
+    button {
+        background-color: black;
+        color: darkgoldenrod;
+        border: none;
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        i:;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+{
+            margin-right: 0.25rem;
+            color: darkgoldenrod;
+        }
+    }
 }
 
 /* Main content */

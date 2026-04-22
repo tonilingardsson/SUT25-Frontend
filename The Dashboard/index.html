@@ -1,19 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antonio Luna's Dashboard - SUT25 </title>
-    <link rel="stylesheet" href="style.css">
-<script src="https://kit.fontawesome.com/9ea2f0edb9.js" crossorigin="anonymous"></script>    <script src="script.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antonio Luna's Dashboard - SUT25</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/9ea2f0edb9.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
     <header class="header">
-        <div >
-            <h3>Day: <span id="day">dd-MM-YYYY</span> | Time: <span id="time">hh:mm:ss</span></h3>
-        </div>
-        <!-- Not necessary for this version -->
-        <!-- <nav>
+      <div>
+        <h3>
+          Day: <span id="date">dd-MM-YYYY</span> | Time:
+          <span id="time">hh:mm:ss</span>
+        </h3>
+      </div>
+      <!-- Dark mode toggle button -->
+      <button class="button dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"> </i> Dark Mode
+      </button>
+      <!-- Not necessary for this version -->
+      <!-- <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -22,46 +33,62 @@
         </nav> -->
     </header>
     <main>
-        <article class="content">
-            <iframe src="https://giphy.com/embed/Um3ljJl8jrnHy" width="480" height="317" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/earth-mindblown-kepler-Um3ljJl8jrnHy"></a></p>
-            <section id="card1">
-                <h2>Quick-links 🔗</h2>
-                <p><i class="fab fa-google"></i> This is the content for section 1.</p>
-                <p><i class="fab fa-github"></i> This is the content for section 1.</p>
-                <p><i class="fab fa-linkedin"></i> This is the content for section 1.</p>
-                <p><i class="fab fa-soundcloud"></i> This is the content for section 1.</p>
-            </section>
-            <section id="card2">
-                <h2>Daily Weather 🌡️</h2>
-                <p><i class="fas fa-sun"></i> Today's weather is sunny.</p>
-                <p><i class="fas fa-cloud"></i> Tomorrow's weather is cloudy.</p>
-                <p><i class="fas fa-rainbow"></i> The day after tomorrow will be rainy.</p>
+      <h1 class="content title" id="dashboard-title">
+        Antonio Luna's Dashboard
+      </h1>
+      <article class="content">
+        <div class="col-1 left">
+          <section id="bookmarks">
+    <h2>Bookmarks 🔖</h2>
+    <ul id="bookmarks-list">
+    </ul>
+    <!-- TO-DO later: form for adding links -->
+</section>
+          <section id="crypto">
+            <h2>Crypto 📈</h2>
+            <p><i class="fa-brands fa-bitcoin"></i> Bitcoin is at $76,000.</p>
+            <p><i class="fa-brands fa-ethereum"></i> Ethereum is at $3,200.</p>
+            <p><i class="fa-brands fa-solana"></i> Solana is at $90.25.</p>
+            <p><i class="fa-solid fa-poo"></i> Do not invest in meme coins!</p>
+          </section>
+        </div>
 
-            </section>
-            <section id="card3">
-                <h2>Crypto 📈</h2>
-                <p><i class="fa-brands fa-bitcoin"></i> Bitcoin is at $76,000.</p>
-                <p><i class="fa-brands fa-ethereum"></i> Ethereum is at $3,200.</p>
-                <p><i class="fa-brands fa-solana"></i> Solana is at $90.25.</p>
-                <p><i class="fa-solid fa-poo"></i> Do not invest in meme coins!</p>
-            </section>
-            <section id="card4">
-                <h2>Notes 📝</h2>
-                <p>This is the content for section 4.</p>
-                <p>This is the content for section 4.</p>
-                <p>This is the content for section 4.</p>
-                <p>This is the content for section 4.</p>
-            </section>
-        </article>
+        <div class="col-2 right">
+          <section id="weather">
+            <h2>Daily Weather 🌡️</h2>
+            <p><i class="fas fa-sun"></i> Today's weather is sunny.</p>
+            <p><i class="fas fa-cloud"></i> Tomorrow's weather is cloudy.</p>
+            <p>
+              <i class="fas fa-rainbow"></i> The day after tomorrow will be
+              rainy.
+            </p>
+            <p>
+              <i class="fas fa-snowflake"></i> The following day will be snowy.
+            </p>
+          </section>
+          <section id="notes">
+            <h2>Notes 📝</h2>
+            <textarea
+              id="notes-text"
+              placeholder="Write your notes here..."
+            ></textarea>
+          </section>
+        </div>
+      </article>
+      <aside class="aside-right">
+        <button id="change-bg-button" onclick="">
+          <i class="fas fa-recycle"></i>Change BG!
+        </button>
+      </aside>
     </main>
     <footer class="footer">
-        <!-- Not necessary for this version -->
-        <!-- <ul>
+      <!-- Not necessary for this version -->
+      <!-- <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul> -->
-        <p>Copyright © 2026 Antonio Luna</p>
+      <p>Copyright © 2026 Antonio Luna</p>
     </footer>
-</body>
+  </body>
 </html>
