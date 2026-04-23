@@ -37,49 +37,95 @@ const titleButtonLabel = document.getElementById("title-btn-label");
 
 const savedTitle = localStorage.getItem("dashboard-title");
 
-  if (savedTitle) {
-    dashboardTitle.textContent = savedTitle;
-  } else {
-    dashboardTitle.textContent = "Antonio's Dashboard";
-    localStorage.setItem("dashboard-title", "Antonio's Dashboard");
-  }
+if (savedTitle) {
+  dashboardTitle.textContent = savedTitle;
+} else {
+  dashboardTitle.textContent = "Antonio's Dashboard";
+  localStorage.setItem("dashboard-title", "Antonio's Dashboard");
+}
 
 // Click handler for the title edit button
-  titleButton.addEventListener("click", function() {
-    if(titleButtonLabel.textContent.trim() === "Edit") {
-        dashboardTitle.contentEditable = "true";
-        dashboardTitle.focus();
-        titleButtonLabel.textContent = "Save";
-    }
-    else
-    {
-        const newTitle = dashboardTitle.textContent.trim();
-        
-            if (newTitle !== "") {
-              dashboardTitle.textContent = newTitle;
-              localStorage.setItem("dashboard-title", newTitle);
-            } else {
-                const fallbackTitle = "Antonio's Dashboard";
-                dashboardTitle.textContent = fallbackTitle;
-                localStorage.setItem("dashboard-title", fallbackTitle);
-            }
+titleButton.addEventListener("click", function () {
+  if (titleButtonLabel.textContent.trim() === "Edit") {
+    dashboardTitle.contentEditable = "true";
+    dashboardTitle.focus();
+    titleButtonLabel.textContent = "Save";
+  } else {
+    const newTitle = dashboardTitle.textContent.trim();
 
-        dashboardTitle.contentEditable = "false";
-        titleButton.textContent = "Edit";
+    if (newTitle !== "") {
+      dashboardTitle.textContent = newTitle;
+      localStorage.setItem("dashboard-title", newTitle);
+    } else {
+      const fallbackTitle = "Antonio's Dashboard";
+      dashboardTitle.textContent = fallbackTitle;
+      localStorage.setItem("dashboard-title", fallbackTitle);
     }
+
+    dashboardTitle.contentEditable = "false";
+    titleButtonLabel.textContent = "Edit";
+  }
+});
+
+// Make the textarea saved and rendered by Localstorage
+const textarea = document.getElementById("notes-text");
+const savedNotes = localStorage.getItem("dashboard-notes");
+
+if (savedNotes) {
+  textarea.value = savedNotes;
+}
+
+// Adding an input to the textarea to save the notes in Localstorage whenever the user types something
+textarea.addEventListener("input", function () {
+  localStorage.setItem("dashboard-notes", textarea.value);
+});
+
+// Bookmarks functionality
+const bookmarkForm = document.getElementById("bookmark-form");
+const bookmarkTitleInput = document.getElementById("bookmark-title");
+const bookmarkUrlInput = document.getElementById("bookmark-url");
+const bookmarksList = document.getElementById("bookmarks-list");
+
+let bookmarks =JSON.parse(localStorage.getItem("dashboard-bookmarks")) || [];
+
+// Calling the default bookmarks and the saved bookmarks from localstorage
+function renderBookmarks() {
+  bookmarksList.innerHTML = "";
+
+  bookmarks.forEach((bookmark) => {
+    const li = document.createElement("li");
+    const link = document.createElement("a");
+    
+    link.href = bookmark.url;
+    link.textContent = bookmark.title;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    
+    li.appendChild(link);
+    bookmarksList.appendChild(li);
   });
+}
 
-  // Make the textarea saved and rendered by Localstorage
-  const textarea = document.getElementById("notes-text");
-  const savedNotes = localStorage.getItem("dashboard-notes");
-
-  if (savedNotes) {
-    textarea.value = savedNotes;
+// Event listener for the bookmark form submission
+bookmarkForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  
+  const title = bookmarkTitleInput.value.trim();
+  const url = bookmarkUrlInput.value.trim();
+  
+  if (title === "" && url === "") {
+    return;
   }
 
-  // Adding an input to the textarea to save the notes in Localstorage whenever the user types something
-  textarea.addEventListener("input", function() {
-    localStorage.setItem("dashboard-notes", textarea.value);
-  });
+  const newBookmark = { title, url };
 
-  console.log(textarea.value);
+  bookmarks.push(newBookmark);
+  localStorage.setItem("dashboard-bookmarks", JSON.stringify(bookmarks));
+  
+  renderBookmarks();
+
+  bookmarkTitleInput.value = "";
+  bookmarkUrlInput.value = "";
+});
+
+renderBookmarks();

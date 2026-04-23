@@ -38,7 +38,8 @@
           Antonio's Dashboard
         </h1>
         <button class="button" id="dashboard-title-btn">
-          <i class="fas fa-edit"></i><span id="title-btn-label">Edit</span>
+          <i class="fas fa-edit"></i>
+          <span id="title-btn-label">Edit</span>
         </button>
       </div>
       <article class="content">
@@ -46,7 +47,11 @@
           <section id="bookmarks">
             <h2>Bookmarks 🔖</h2>
             <ul id="bookmarks-list"></ul>
-            <!-- TO-DO later: form for adding links -->
+            <form id="bookmark-form">
+              <input type="text" id="bookmark-title" placeholder="Site title" />
+              <input type="url" id="bookmark-url" placeholder="Site URL" />
+              <button type="submit">Add 🔖</button>
+            </form>
           </section>
           <section id="crypto">
             <h2>Crypto 📈</h2>
