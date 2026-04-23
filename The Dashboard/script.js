@@ -68,3 +68,18 @@ const savedTitle = localStorage.getItem("dashboard-title");
         titleButton.textContent = "Edit";
     }
   });
+
+  // Make the textarea saved and rendered by Localstorage
+  const textarea = document.getElementById("notes-text");
+  const savedNotes = localStorage.getItem("dashboard-notes");
+
+  if (savedNotes) {
+    textarea.value = savedNotes;
+  }
+
+  // Adding an input to the textarea to save the notes in Localstorage whenever the user types something
+  textarea.addEventListener("input", function() {
+    localStorage.setItem("dashboard-notes", textarea.value);
+  });
+
+  console.log(textarea.value);
