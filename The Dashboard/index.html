@@ -33,17 +33,21 @@
         </nav> -->
     </header>
     <main>
-      <h1 class="content title" id="dashboard-title">
-        Antonio Luna's Dashboard
-      </h1>
+      <div class="title row">
+        <h1 class="content title" id="dashboard-title" contenteditable="false">
+          Antonio's Dashboard
+        </h1>
+        <button class="button" id="dashboard-title-btn">
+          <i class="fas fa-edit"></i><span id="title-btn-label">Edit</span>
+        </button>
+      </div>
       <article class="content">
         <div class="col-1 left">
           <section id="bookmarks">
-    <h2>Bookmarks 🔖</h2>
-    <ul id="bookmarks-list">
-    </ul>
-    <!-- TO-DO later: form for adding links -->
-</section>
+            <h2>Bookmarks 🔖</h2>
+            <ul id="bookmarks-list"></ul>
+            <!-- TO-DO later: form for adding links -->
+          </section>
           <section id="crypto">
             <h2>Crypto 📈</h2>
             <p><i class="fa-brands fa-bitcoin"></i> Bitcoin is at $76,000.</p>
