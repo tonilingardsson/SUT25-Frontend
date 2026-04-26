@@ -95,13 +95,26 @@ function renderBookmarks() {
   bookmarks.forEach((bookmark) => {
     const li = document.createElement("li");
     const link = document.createElement("a");
+    const removeBtn = document.createElement("button");
+
     
     link.href = bookmark.url;
     link.textContent = bookmark.title;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     
+    removeBtn.textContent = "🗑️";
+    removeBtn.type = "button";
+
+    removeBtn.addEventListener("click", function() {
+      bookmarks = bookmarks.filter(b => b.url !== bookmark.url);
+      localStorage.setItem("dashboard-bookmarks", JSON.stringify(bookmarks));
+      renderBookmarks();
+    });
+
     li.appendChild(link);
+    removeBtn.classList.add("remove-btn");
+    li.appendChild(removeBtn);
     bookmarksList.appendChild(li);
   });
 }
