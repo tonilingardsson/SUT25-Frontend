@@ -213,3 +213,7 @@ if("geolocation" in navigator) {
 } else {
   weatherWidget.textContent = "Geolocation is not supported by this browser.";
 }
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+}
