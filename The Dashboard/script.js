@@ -217,3 +217,57 @@ if("geolocation" in navigator) {
 function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
 }
+
+// Change background image functionality and add an error handling for incomplete or wrong URL
+// function changeBackground() {
+//   const backgroundUrl = prompt("Enter the URL of the background image:");
+//   if (backgroundUrl) {
+//     const backgroundImage = new Image();
+//     backgroundImage.onload = function() {
+//       document.body.style.backgroundImage = `url(${backgroundImage.src})`
+//     };
+//     backgroundImage.onerror = function() {
+//       alert("Error loading background image. Please check the URL and try again.");
+//     };
+//     backgroundImage.src = backgroundUrl;
+//   }
+// }
+
+// Unsplash background button
+const changeBgButton = document.getElementById("change-bg-button");
+
+// Restore the background image from Localstorage when the page loads
+const savedBackground = localStorage.getItem("dashboard-background");
+if (savedBackground) {
+  document.body.style.backgroundImage = `url(${savedBackground})`;
+}
+
+changeBgButton.addEventListener("click", function() {
+  changeBgButton.textContent = "Loading...";
+
+  // Fetch a random portrait image from Unsplash API and set it as the background image, also save it in Localstorage
+  fetch("https://api.unsplash.com/photos/random?orientation=portrait", {
+    headers: {
+Authorization: "Client-ID 7x7pTUgm0ovp1IbUFvs8PT_Kwch_SvM2qYNh2FshQbE"
+    }
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    // Use the returned image URL to set the background image of the dashboard, also save it in Localstorage
+    const imageUrl = data.urls.regular;
+
+    document.body.style.backgroundImage = `url(${imageUrl})`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = "no-repeat";
+
+    // Save the background image URL in Localstorage
+    localStorage.setItem("dashboard-background", imageUrl);
+  changeBgButton.textContent = "Change BG!";
+})
+    .catch(function (error) {
+    console.error("Error fetching background image:" , error);
+    changeBgButton.textContent = "Change BG!";
+    alert("Error fetching background image. Please try again later.");
+  })
+})

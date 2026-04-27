@@ -1,10 +1,18 @@
 /* Base styles */
+html,body {
+  min-height: 100%;
+}
+
 body {
+  min-width: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
   transition:
     background-color 0.3s,
     color 0.3s;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 button {
@@ -37,7 +45,6 @@ button {
 
 /* Light mode */
 body.light-mode {
-  background-color: #ffffff;
   color: #000000;
   button {
     max-width: 2rem;
@@ -131,7 +138,6 @@ button {
 /* Sidebar */
 .sidebar {
   width: 250px;
-  background-color: #f4f4f4;
   padding: 1rem;
   transition: background-color 0.3s;
 }
@@ -145,13 +151,11 @@ body.dark-mode .sidebar {
   display: flex;
   flex: 1;
   padding: 1rem;
-  background-color: #ffffff;
   transition: background-color 0.3s;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-content: center;
-  background-color: #ffffff;
   transition: background-color 0.3s;
 }
 
