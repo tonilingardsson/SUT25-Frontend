@@ -109,7 +109,6 @@ function renderBookmarks() {
     removeBtn.addEventListener("click", function() {
       bookmarks = bookmarks.filter(b => b.url !== bookmark.url);
       localStorage.setItem("dashboard-bookmarks", JSON.stringify(bookmarks));
-      renderBookmarks();
     });
 
     li.appendChild(link);
