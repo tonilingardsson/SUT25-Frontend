@@ -109,6 +109,7 @@ function renderBookmarks() {
     removeBtn.addEventListener("click", function() {
       bookmarks = bookmarks.filter(b => b.url !== bookmark.url);
       localStorage.setItem("dashboard-bookmarks", JSON.stringify(bookmarks));
+      renderBookmarks();
     });
 
     li.appendChild(link);
@@ -156,8 +157,6 @@ if("geolocation" in navigator) {
     const windSpeed = data.current.wind_speed_10m;
     const weatherCode = data.current.weather_code;
 
-    
-    
     weatherWidget.innerHTML = `
 <p><strong>Temperature</strong>: ${temperature}°C</p>
 <p><strong>Wind Speed</strong>: ${windSpeed} km/h</p>
@@ -213,24 +212,36 @@ if("geolocation" in navigator) {
   weatherWidget.textContent = "Geolocation is not supported by this browser.";
 }
 
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
+// Dark mode toggle functionality
+const darkModeToggle = document.getElementById("darkModeToggle");
+const themeIcon = document.getElementById("theme-icon");
+const themeLabel = document.getElementById("theme-label");
+
+function applyTheme(isDark) {
+  document.body.classList.toggle("dark-mode", isDark);
+
+  if (isDark) {
+    themeIcon.className = "fas fa-sun";
+    themeLabel.textContent = "Light Mode";
+    localStorage.setItem("dashboard-theme", "dark");
+  } else {
+    themeIcon.className = "fas fa-moon";
+    themeLabel.textContent = "Dark Mode";
+    localStorage.setItem("dashboard-theme", "light");
+  }
 }
 
-// Change background image functionality and add an error handling for incomplete or wrong URL
-// function changeBackground() {
-//   const backgroundUrl = prompt("Enter the URL of the background image:");
-//   if (backgroundUrl) {
-//     const backgroundImage = new Image();
-//     backgroundImage.onload = function() {
-//       document.body.style.backgroundImage = `url(${backgroundImage.src})`
-//     };
-//     backgroundImage.onerror = function() {
-//       alert("Error loading background image. Please check the URL and try again.");
-//     };
-//     backgroundImage.src = backgroundUrl;
-//   }
-// }
+const savedTheme = localStorage.getItem("dashboard-theme");
+if (savedTheme === "dark") {
+  applyTheme(true);
+} else {
+  applyTheme(false);
+}
+
+darkModeToggle.addEventListener("click", function () {
+  const isDark = document.body.classList.contains("dark-mode");
+  applyTheme(!isDark);
+});
 
 // Unsplash background button
 const changeBgButton = document.getElementById("change-bg-button");
