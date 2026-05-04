@@ -126,7 +126,7 @@ bookmarkForm.addEventListener("submit", function (event) {
   const title = bookmarkTitleInput.value.trim();
   const url = bookmarkUrlInput.value.trim();
   
-  if (title === "" && url === "") {
+  if (title === "" || url === "") {
     return;
   }
 
