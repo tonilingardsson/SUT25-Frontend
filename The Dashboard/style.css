@@ -119,6 +119,13 @@ body.dark-mode .footer {
   box-shadow: var(--shadow);
 }
 
+.title-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 body.dark-mode .title.row {
   background: var(--bg-overlay-dark);
   border-color: var(--panel-border-dark);
