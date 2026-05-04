@@ -270,3 +270,35 @@ Authorization: "Client-ID 7x7pTUgm0ovp1IbUFvs8PT_Kwch_SvM2qYNh2FshQbE"
     alert("Error fetching background image. Please try again later.");
   })
 })
+
+// Crypto widget 
+
+const cryptoWidget = document.getElementById("crypto-widget");
+
+function updateCryptoPrices() {
+  cryptoWidget.textContent = "Loading crypto prices...";
+
+fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    const bitcoinPrice = data.bitcoin.usd;
+    const ethereumPrice = data.ethereum.usd;
+    const solanaPrice = data.solana.usd;
+
+    cryptoWidget.innerHTML = `
+      <p><i class="fa-brands fa-bitcoin"></i> Bitcoin is at <strong>$${bitcoinPrice.toLocaleString()}</strong>.</p>
+      <p><i class="fa-brands fa-ethereum"></i> Ethereum is at <strong>$${ethereumPrice.toLocaleString()}</strong>.</p>
+      <p><i class="fa-brands fa-solana"></i> Solana is at <strong>$${solanaPrice.toLocaleString()}</strong>.</p>
+      <p><i class="fa-solid fa-poo"></i> Do not invest in meme coins!</p>
+    `;
+  })
+    .catch(function (error) {
+    console.error("Error fetching crypto data:", error);
+    cryptoWidget.innerHTML = "Unable to fetch crypto data.";
+  });
+}
+
+updateCryptoPrices();
+setInterval(updateCryptoPrices, 5 * 60 * 1000);
