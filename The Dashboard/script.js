@@ -141,6 +141,8 @@ bookmarkForm.addEventListener("submit", function (event) {
   bookmarkUrlInput.value = "";
 });
 
+renderBookmarks();
+
 // Weather widget
 const weatherWidget = document.getElementById("weather-widget");
 
