@@ -88,31 +88,63 @@ const bookmarksList = document.getElementById("bookmarks-list");
 
 let bookmarks =JSON.parse(localStorage.getItem("dashboard-bookmarks")) || [];
 
+//Helper function to render the bookmarks icons
+function getBookmarkIcon(url, title) {
+  const lowerUrl = url.toLowerCase();
+  const lowerTitle = title.toLowerCase();
+
+  if (lowerUrl.includes("google.com")) return "fa-brands fa-google";
+  if (lowerUrl.includes("github.com")) return "fa-brands fa-github";
+  if (lowerUrl.includes("youtube.com")) return "fa-brands fa-youtube";
+  if (lowerUrl.includes("twitter.com") || lowerUrl.includes("x.com")) return "fa-brands fa-x-twitter";
+  if (lowerUrl.includes("linkedin.com")) return "fa-brands fa-linkedin";
+  if (lowerUrl.includes("facebook.com")) return "fa-brands fa-facebook";
+  if (lowerUrl.includes("instagram.com")) return "fa-brands fa-instagram";
+  if (lowerUrl.includes("spotify.com")) return "fa-brands fa-spotify";
+  if (lowerUrl.includes("discord.com")) return "fa-brands fa-discord";
+  if (lowerUrl.includes("reddit.com")) return "fa-brands fa-reddit";
+  if (lowerUrl.includes("twitch.tv")) return "fa-brands fa-twitch";
+
+  if (lowerTitle.includes("notion")) return "fa-solid fa-note-sticky";
+  if (lowerTitle.includes("chatgpt")) return "fa-solid fa-robot";
+
+  return "fa-solid fa-globe";
+}
+
 // Calling the default bookmarks and the saved bookmarks from localstorage
 function renderBookmarks() {
   bookmarksList.innerHTML = "";
 
   bookmarks.forEach((bookmark) => {
-    const li = document.createElement("li");
-    const link = document.createElement("a");
-    const removeBtn = document.createElement("button");
+    const leftSide = document.createElement("div");
+    leftSide.classList.add("bookmark-left");
 
+    const li = document.createElement("li");
+    const removeBtn = document.createElement("button");
     
+    const icon = document.createElement("i");
+    icon.className = getBookmarkIcon(bookmark.url, bookmark.title);
+    icon.classList.add("bookmark-icon");
+    
+    const link = document.createElement("a");
     link.href = bookmark.url;
     link.textContent = bookmark.title;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     
-    removeBtn.textContent = "🗑️";
+    // Adding a remove button for each bookmark
+    removeBtn.textContent = "X";
     removeBtn.type = "button";
-
+    
     removeBtn.addEventListener("click", function() {
       bookmarks = bookmarks.filter(b => b.url !== bookmark.url);
       localStorage.setItem("dashboard-bookmarks", JSON.stringify(bookmarks));
       renderBookmarks();
     });
-
-    li.appendChild(link);
+    
+    leftSide.appendChild(icon);
+    leftSide.appendChild(link);
+    li.appendChild(leftSide);
     removeBtn.classList.add("remove-btn");
     li.appendChild(removeBtn);
     bookmarksList.appendChild(li);

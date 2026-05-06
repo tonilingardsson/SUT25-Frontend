@@ -55,29 +55,28 @@
       </div>
       <article class="content">
         <div class="col-1 left">
-          <section id="bookmarks">
+          <section id="bookmarks" class="dashboard-box">
             <h2>Bookmarks 🔖</h2>
-            <ul id="bookmarks-list"></ul>
+            <div id="bookmarks-list"></div>
             <form id="bookmark-form">
               <input type="text" id="bookmark-title" placeholder="Site title" />
               <input type="url" id="bookmark-url" placeholder="Site URL" />
               <button type="submit">Add 🔖</button>
             </form>
           </section>
-          <section id="crypto">
-            <h2>Crypto 📈</h2>
-            <div id="crypto-widget">
-            </div>
+          <section id="weather" class="dashboard-box">
+            <h2>Daily Weather 🌡️</h2>
+            <div id="weather-widget">Loading weather...</div>
           </section>
         </div>
 
         <div class="col-2 right">
-          <section id="weather">
-            <h2>Daily Weather 🌡️</h2>
-            <div id="weather-widget">Loading weather...</div>
-
+          <section id="crypto" class="dashboard-box">
+            <h2>Crypto 📈</h2>
+            <div id="crypto-widget">
+            </div>
           </section>
-          <section id="notes">
+          <section id="notes" class="dashboard-box">
             <h2>Notes 📝</h2>
             <textarea
               id="notes-text"
