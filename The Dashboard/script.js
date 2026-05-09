@@ -92,6 +92,8 @@ let bookmarks =JSON.parse(localStorage.getItem("dashboard-bookmarks")) || [];
 function getBookmarkIcon(url, title) {
   const lowerUrl = url.toLowerCase();
   const lowerTitle = title.toLowerCase();
+  const domain = (new URL(url)).hostname.replace("www.", "");
+  const size = 32;
 
   if (lowerUrl.includes("google.com")) return "fa-brands fa-google";
   if (lowerUrl.includes("github.com")) return "fa-brands fa-github";
@@ -175,47 +177,102 @@ bookmarkForm.addEventListener("submit", function (event) {
 
 renderBookmarks();
 
-// Weather widget
+// Weather widget for today, tomorrow and the day after tomorrow using Open-Meteo API
 const weatherWidget = document.getElementById("weather-widget");
 
 if("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(position => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,weather_code&timezone=auto`)
     
-  .then(response => response.json())
-  .then(data => {
-    const temperature = data.current.temperature_2m;
-    const windSpeed = data.current.wind_speed_10m;
-    const weatherCode = data.current.weather_code;
+    
+fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`)
+    .then(response => response.json())
+    .then(data => {
+      const temperature = data.current.temperature_2m;
+      const windSpeed = data.current.wind_speed_10m;
+      const weatherCode = data.current.weather_code;
 
-    weatherWidget.innerHTML = `
-<p><strong>Temperature</strong>: ${temperature}°C</p>
-<p><strong>Wind Speed</strong>: ${windSpeed} km/h</p>
-<p><strong>Weather</strong>: ${weatherCodeInHumanLanguage(weatherCode)}</p>`;
-  })
-  .catch(error => {
-    weatherWidget.textContent = "Unable to fetch weather data.";
-    console.error("Error fetching weather data:", error);
-  });
+      const forecastRows = [
+  {
+    day: "Today",
+    temperature: `${Math.round(data.current.temperature_2m)}°C`,
+    weatherCode: data.current.weather_code
+  },
+  {
+    day: "Tomorrow",
+    temperature: `${Math.round(data.daily.temperature_2m_max[1])}° / ${Math.round(data.daily.temperature_2m_min[1])}°`,
+    weatherCode: data.daily.weather_code[1]
+  },
+  {
+    day: getDayLabel(2, data.daily.time[2]),
+    temperature: `${Math.round(data.daily.temperature_2m_max[2])}° / ${Math.round(data.daily.temperature_2m_min[2])}°`,
+    weatherCode: data.daily.weather_code[2]
+  }
+];
+      
+      weatherWidget.innerHTML = "";
 
-  function weatherCodeInHumanLanguage(code) {
-    const weatherCodes = {
-      // All the weather codes from Open-Meteo API with their corresponding human-readable descriptions
-      0: "Clear sky",
-      1: "Mainly clear",
-      2: "Partly cloudy",
-      3: "Overcast",
-      45: "Fog",
-      48: "Depositing rime fog",
-      51: "Light drizzle",
-      53: "Moderate drizzle",
-      55: "Dense drizzle",
-      56: "Light freezing drizzle",
-      57: "Dense freezing drizzle",
-      61: "Slight rain",
+forecastRows.forEach(function (row) {
+  const visual = getWeatherVisual(row.weatherCode);
+
+  const weatherRow = document.createElement("div");
+  weatherRow.classList.add("weather-row");
+
+  weatherRow.innerHTML = `
+    <span class="weather-icon">${visual.icon}</span>
+    <span class="weather-day">${row.day}</span>
+    <span class="weather-temp">${row.temperature}</span>
+    <span class="weather-desc">${visual.text}</span>
+  `;
+
+  weatherWidget.appendChild(weatherRow);
+});
+    })
+    .catch(error => {
+      weatherWidget.textContent = "Unable to fetch weather data.";
+      console.error("Error fetching weather data:", error);
+    });
+
+    // Helper function to get the day label
+    function getDayLabel(index, dateString) {
+  if (index === 0) return "Today";
+  if (index === 1) return "Tomorrow";
+
+  const date = new Date(dateString);
+  const weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  return weekdayNames[date.getDay()];
+}
+
+  // Helper function to get the weather icon and description based on the weather code
+    function getWeatherVisual(code) {
+  if (code === 0) return { icon: "☀️", text: "Clear" };
+  if (code === 1 || code === 2) return { icon: "⛅", text: "Partly cloudy" };
+  if (code === 3) return { icon: "☁️", text: "Overcast" };
+  if (code === 45 || code === 48) return { icon: "🌫️", text: "Fog" };
+  if ([51, 53, 55, 56, 57].includes(code)) return { icon: "🌦️", text: "Drizzle" };
+  if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return { icon: "🌧️", text: "Rain" };
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return { icon: "❄️", text: "Snow" };
+  if ([95, 96, 99].includes(code)) return { icon: "⛈️", text: "Storm" };
+
+  return { icon: "🌤️", text: "Unknown" };
+}
+
+    function weatherCodeInHumanLanguage(code) {
+      const weatherCodes = {
+        // All the weather codes from Open-Meteo API with their corresponding human-readable descriptions
+        0: "Clear sky",
+        1: "Mainly clear",
+        2: "Partly cloudy",
+        3: "Overcast",
+        45: "Fog",
+        48: "Depositing rime fog",
+        51: "Light drizzle",
+        53: "Moderate drizzle",
+        55: "Dense drizzle",
+        56: "Light freezing drizzle",
+        57: "Dense freezing drizzle",
+        61: "Slight rain",
       63: "Moderate rain",
       65: "Heavy rain",
       66: "Light freezing rain",
@@ -235,13 +292,13 @@ if("geolocation" in navigator) {
     };
     return weatherCodes[code] || "Unknown weather";
   }
-
+  
 },
-  function(error) {
-    weatherWidget.textContent= "Unable to retrieve your location.";
-    console.error("Error retrieving location:", error);
-  }
-  );
+function(error) {
+  weatherWidget.textContent= "Unable to retrieve your location.";
+  console.error("Error retrieving location:", error);
+}
+);
 } else {
   weatherWidget.textContent = "Geolocation is not supported by this browser.";
 }
