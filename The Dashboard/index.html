@@ -5,52 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antonio Luna's Dashboard - SUT25</title>
     <link rel="stylesheet" href="style.css" />
-    <script
-      src="https://s2.googleusercontent.com/s2/favicons?domain=${domain}&sz=${size}"
-      crossorigin="anonymous"
-    ></script>
     <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/9ea2f0edb9.js" crossorigin="anonymous"></script>
+
   </head>
   <body>
     <header class="header">
-      <div>
-        <h3>
-          Day: <span id="date"></span> | Time:
-          <span id="time"></span>
-        </h3>
+      <div class="date-pill">
+        <strong><span id="time"></span></strong>
+        <span id="date"></span>
       </div>
-      <!-- Not necessary for this version -->
-      <!-- <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav> -->
     </header>
     <main>
       <div class="title row">
-        <h1 class="content title" id="dashboard-title" contenteditable="false">
+        <h1 id="dashboard-title" contenteditable="false">
           Antonio's Dashboard
         </h1>
-        
-        <button class="button" id="dashboard-title-btn">
-          <i class="fas fa-edit"></i>
-          <span id="title-btn-label">Edit</span>
-        </button>
-        
+
       </div>
       <article class="content">
         <div class="col-1 left">
-          <section id="bookmarks" class="dashboard-box">
-            <h2>Bookmarks 🔖</h2>
-            <div id="bookmarks-list"></div>
-            <form id="bookmark-form">
-              <input type="text" id="bookmark-title" placeholder="Site title" />
-              <input type="url" id="bookmark-url" placeholder="Site URL" />
-              <button type="submit">Add 🔖</button>
-            </form>
-          </section>
+         <section id="bookmarks" class="dashboard-box">
+  <h2>Bookmarks 🔖</h2>
+  <div id="bookmarks-list"></div>
+
+  <button type="button" id="open-bookmark-modal">Add 🔖</button>
+</section>
           <section id="weather" class="dashboard-box">
             <h2>Daily Weather 🌡️</h2>
             <div id="weather-widget">Loading weather...</div>
@@ -74,19 +54,22 @@
       </article>
     </main>
     <footer class="footer">
-      <button id="change-bg-button">
-          <i class="fas fa-recycle"></i>
-          <span>
-            Change BG
-          </span>
-        </button>
-           <!-- Dark mode toggle button -->
-      <!-- <button class="button dark-mode-toggle" id="darkModeToggle">
-        <i class="fas fa-moon" id="theme-icon"></i>
-        <span id="theme-label">
-          Dark Mode
-        </span>
-      </button> -->
+      <button id="change-bg-button" type="button">
+  <i class="fas fa-arrow-rotate-right" id="change-bg-icon" alt="Change Background"></i>
+  <span id="change-bg-label">Change BG</span>
+</button>
     </footer>
+<dialog id="bookmark-modal">
+  <div class="bookmark-modal-content">
+    <button type="button" id="close-bookmark-modal" class="close-modal-btn">×</button>
+    <h3>Add bookmark</h3>
+
+    <form id="bookmark-form">
+      <input type="text" id="bookmark-title" placeholder="Site title" />
+      <input type="url" id="bookmark-url" placeholder="Site URL" />
+      <button type="submit">Save link</button>
+    </form>
+  </div>
+</dialog>
   </body>
 </html>
