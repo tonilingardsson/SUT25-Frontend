@@ -30,11 +30,8 @@ getTime();
 setInterval(getDate, 1000);
 setInterval(getTime, 1000);
 
-// Dashboart title from Localstorage
+// Dashboard title from Localstorage
 const dashboardTitle = document.getElementById("dashboard-title");
-const titleButton = document.getElementById("dashboard-title-btn");
-const titleButtonLabel = document.getElementById("title-btn-label");
-
 const savedTitle = localStorage.getItem("dashboard-title");
 
 if (savedTitle) {
@@ -44,30 +41,36 @@ if (savedTitle) {
   localStorage.setItem("dashboard-title", "Antonio's Dashboard");
 }
 
-// Click handler for the title edit button
-titleButton.addEventListener("click", function () {
-  if (titleButtonLabel.textContent.trim() === "Edit") {
-    dashboardTitle.contentEditable = "true";
-    dashboardTitle.focus();
-    titleButtonLabel.textContent = "Save";
+function saveDashboardTitle() {
+  const newTitle = dashboardTitle.textContent.trim();
+
+  if (newTitle !== "") {
+    localStorage.setItem("dashboard-title", newTitle);
   } else {
-    const newTitle = dashboardTitle.textContent.trim();
+    dashboardTitle.textContent = "Antonio's Dashboard";
+    localStorage.setItem("dashboard-title", "Antonio's Dashboard");
+  }
 
-    if (newTitle !== "") {
-      dashboardTitle.textContent = newTitle;
-      localStorage.setItem("dashboard-title", newTitle);
-    } else {
-      const fallbackTitle = "Antonio's Dashboard";
-      dashboardTitle.textContent = fallbackTitle;
-      localStorage.setItem("dashboard-title", fallbackTitle);
-    }
+  dashboardTitle.contentEditable = "false";
+}
 
-    dashboardTitle.contentEditable = "false";
-    titleButtonLabel.textContent = "Edit";
+dashboardTitle.addEventListener("click", function () {
+  dashboardTitle.contentEditable = "true";
+  dashboardTitle.focus();
+});
+
+dashboardTitle.addEventListener("blur", function () {
+  saveDashboardTitle();
+});
+
+dashboardTitle.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    dashboardTitle.blur();
   }
 });
 
-// Make the textarea saved and rendered by Localstorage
+// Notes saved in localStorage
 const textarea = document.getElementById("notes-text");
 const savedNotes = localStorage.getItem("dashboard-notes");
 
@@ -75,7 +78,6 @@ if (savedNotes) {
   textarea.value = savedNotes;
 }
 
-// Adding an input to the textarea to save the notes in Localstorage whenever the user types something
 textarea.addEventListener("input", function () {
   localStorage.setItem("dashboard-notes", textarea.value);
 });
@@ -89,29 +91,9 @@ const bookmarksList = document.getElementById("bookmarks-list");
 let bookmarks = JSON.parse(localStorage.getItem("dashboard-bookmarks")) || [];
 
 //Helper function to render the bookmarks icons
-function getBookmarkIcon(url, title) {
-  const lowerUrl = url.toLowerCase();
-  const lowerTitle = title.toLowerCase();
+function getBookmarkFavicon(url) {
   const domain = new URL(url).hostname.replace("www.", "");
-  const size = 32;
-
-  if (lowerUrl.includes("google.com")) return "fa-brands fa-google";
-  if (lowerUrl.includes("github.com")) return "fa-brands fa-github";
-  if (lowerUrl.includes("youtube.com")) return "fa-brands fa-youtube";
-  if (lowerUrl.includes("twitter.com") || lowerUrl.includes("x.com"))
-    return "fa-brands fa-x-twitter";
-  if (lowerUrl.includes("linkedin.com")) return "fa-brands fa-linkedin";
-  if (lowerUrl.includes("facebook.com")) return "fa-brands fa-facebook";
-  if (lowerUrl.includes("instagram.com")) return "fa-brands fa-instagram";
-  if (lowerUrl.includes("spotify.com")) return "fa-brands fa-spotify";
-  if (lowerUrl.includes("discord.com")) return "fa-brands fa-discord";
-  if (lowerUrl.includes("reddit.com")) return "fa-brands fa-reddit";
-  if (lowerUrl.includes("twitch.tv")) return "fa-brands fa-twitch";
-
-  if (lowerTitle.includes("notion")) return "fa-solid fa-note-sticky";
-  if (lowerTitle.includes("chatgpt")) return "fa-solid fa-robot";
-
-  return "fa-solid fa-globe";
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
 }
 
 // Calling the default bookmarks and the saved bookmarks from localstorage
@@ -119,14 +101,15 @@ function renderBookmarks() {
   bookmarksList.innerHTML = "";
 
   bookmarks.forEach((bookmark) => {
+    const li = document.createElement("li");
+    li.classList.add("bookmark-item");
+
     const leftSide = document.createElement("div");
     leftSide.classList.add("bookmark-left");
 
-    const li = document.createElement("li");
-    const removeBtn = document.createElement("button");
-
-    const icon = document.createElement("i");
-    icon.className = getBookmarkIcon(bookmark.url, bookmark.title);
+    const icon = document.createElement("img");
+    icon.src = getBookmarkFavicon(bookmark.url);
+    icon.alt = `${bookmark.title} favicon`;
     icon.classList.add("bookmark-icon");
 
     const link = document.createElement("a");
@@ -134,10 +117,12 @@ function renderBookmarks() {
     link.textContent = bookmark.title;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
+    link.classList.add("bookmark-link");
 
-    // Adding a remove button for each bookmark
+    const removeBtn = document.createElement("button");
     removeBtn.textContent = "X";
     removeBtn.type = "button";
+    removeBtn.classList.add("remove-btn");
 
     removeBtn.addEventListener("click", function () {
       bookmarks = bookmarks.filter((b) => b.url !== bookmark.url);
@@ -148,25 +133,27 @@ function renderBookmarks() {
     leftSide.appendChild(icon);
     leftSide.appendChild(link);
     li.appendChild(leftSide);
-    removeBtn.classList.add("remove-btn");
     li.appendChild(removeBtn);
     bookmarksList.appendChild(li);
   });
 }
 
 // Event listener for the bookmark form submission
+const bookmarkModal = document.getElementById("bookmark-modal");
+const openBookmarkModalBtn = document.getElementById("open-bookmark-modal");
+const closeBookmarkModalBtn = document.getElementById("close-bookmark-modal");
 bookmarkForm.addEventListener("submit", function (event) {
   event.preventDefault();
-
+  
   const title = bookmarkTitleInput.value.trim();
   const url = bookmarkUrlInput.value.trim();
-
+  
   if (title === "" || url === "") {
     return;
   }
-
+  
   const newBookmark = { title, url };
-
+  
   bookmarks.push(newBookmark);
   localStorage.setItem("dashboard-bookmarks", JSON.stringify(bookmarks));
 
@@ -174,6 +161,16 @@ bookmarkForm.addEventListener("submit", function (event) {
 
   bookmarkTitleInput.value = "";
   bookmarkUrlInput.value = "";
+  bookmarkModal.close();
+});
+
+
+openBookmarkModalBtn.addEventListener("click", function () {
+  bookmarkModal.showModal();
+});
+
+closeBookmarkModalBtn.addEventListener("click", function () {
+  bookmarkModal.close();
 });
 
 renderBookmarks();
@@ -281,49 +278,22 @@ if ("geolocation" in navigator) {
   weatherWidget.textContent = "Geolocation is not supported by this browser.";
 }
 
-// Dark mode toggle functionality
-const darkModeToggle = document.getElementById("darkModeToggle");
-const themeIcon = document.getElementById("theme-icon");
-const themeLabel = document.getElementById("theme-label");
 
-function applyTheme(isDark) {
-  document.body.classList.toggle("dark-mode", isDark);
-
-  if (isDark) {
-    themeIcon.className = "fas fa-sun";
-    themeLabel.textContent = "Light Mode";
-    localStorage.setItem("dashboard-theme", "dark");
-  } else {
-    themeIcon.className = "fas fa-moon";
-    themeLabel.textContent = "Dark Mode";
-    localStorage.setItem("dashboard-theme", "light");
-  }
-}
-
-const savedTheme = localStorage.getItem("dashboard-theme");
-if (savedTheme === "dark") {
-  applyTheme(true);
-} else {
-  applyTheme(false);
-}
-
-darkModeToggle.addEventListener("click", function () {
-  const isDark = document.body.classList.contains("dark-mode");
-  applyTheme(!isDark);
-});
 
 // Unsplash background button
 const changeBgButton = document.getElementById("change-bg-button");
+const changeBgLabel = document.getElementById("change-bg-label");
 
 // Restore the background image from Localstorage when the page loads
 const savedBackground = localStorage.getItem("dashboard-background");
 if (savedBackground) {
-  document.body.style.backgroundImage = `url(${savedBackground})`;
-}
+document.body.style.backgroundImage = `url(${savedBackground})`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
+  document.body.style.backgroundRepeat = "no-repeat";}
 
 changeBgButton.addEventListener("click", function () {
-  changeBgButton.textContent = "Loading...";
-
+changeBgLabel.textContent = "Loading...";
   // Fetch a random portrait image from Unsplash API and set it as the background image, also save it in Localstorage
   fetch("https://api.unsplash.com/photos/random?orientation=portrait", {
     headers: {
@@ -344,11 +314,11 @@ changeBgButton.addEventListener("click", function () {
 
       // Save the background image URL in Localstorage
       localStorage.setItem("dashboard-background", imageUrl);
-      changeBgButton.textContent = "Change BG!";
+      changeBgLabel.textContent = "Change BG";
     })
     .catch(function (error) {
       console.error("Error fetching background image:", error);
-      changeBgButton.textContent = "Change BG!";
+      changeBgLabel.textContent = "Change BG";
       alert("Error fetching background image. Please try again later.");
     });
 });
